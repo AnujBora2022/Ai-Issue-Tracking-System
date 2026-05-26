@@ -14,6 +14,7 @@ import { styles } from "./components/dashboard/styles";
 
 // const API = "http://localhost:5000";
 const API = import.meta.env.VITE_API_URL;
+
 const api = () => {
   const token = localStorage.getItem("token");
   return axios.create({ baseURL: API, headers: { Authorization: `Bearer ${token}` } });

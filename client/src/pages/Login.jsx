@@ -338,13 +338,14 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (status) setStatus(null);
   };
-
+  const API = import.meta.env.VITE_API_URL;
   const handleSubmit = async () => {
     setLoading(true);
     setStatus(null);
 
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", form);
+      const res = await axios.post(`${API}/auth/login`, form);
+
       localStorage.setItem("token", res.data.token);
       setStatus({ type: "success", message: "Logged in successfully! Redirecting…" });
       // Use React Router if available: 

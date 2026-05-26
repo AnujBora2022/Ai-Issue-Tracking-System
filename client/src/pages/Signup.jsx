@@ -334,6 +334,7 @@ export default function Signup() {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (status) setStatus(null);
   };
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async () => {
     if (!form.name.trim() || !form.email.trim() || !form.password.trim()) {
@@ -343,7 +344,7 @@ export default function Signup() {
     setLoading(true);
     setStatus(null);
     try {
-      await axios.post("http://localhost:5000/auth/signup", form);
+      await axios.post(`${API}/auth/signup`, form);
       setStatus({ type: "success", message: "Account created! Redirecting to login…" });
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
